@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { LoyaltyPointService } from './loyalty-point.service';
 import { CreateLoyaltyPointDto } from './dto/create-loyalty-point.dto';
 import { UpdateLoyaltyPointDto } from './dto/update-loyalty-point.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('loyalty-point')
 @Controller('loyalty-point')
 export class LoyaltyPointController {
   constructor(private readonly loyaltyPointService: LoyaltyPointService) {}
@@ -23,7 +33,10 @@ export class LoyaltyPointController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLoyaltyPointDto: UpdateLoyaltyPointDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateLoyaltyPointDto: UpdateLoyaltyPointDto,
+  ) {
     return this.loyaltyPointService.update(+id, updateLoyaltyPointDto);
   }
 
