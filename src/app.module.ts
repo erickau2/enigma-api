@@ -1,4 +1,4 @@
-import { INestApplication, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -7,12 +7,11 @@ import { User } from './modules/user/entities/user.entity';
 import { Store } from './modules/store/entities/store.entity';
 import { LoyaltyPoint } from './modules/loyalty-point/entities/loyalty-point.entity';
 import { Purchase } from './modules/purchase/entities/purchase.entity';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { UserModule } from './modules/user/user.module';
 import { LoyaltyPointModule } from './modules/loyalty-point/loyalty-point.module';
 import { StoreModule } from './modules/store/store.module';
 import { PurchaseModule } from './modules/purchase/purchase.module';
-import { PromotionModule } from './promotion/promotion.module';
+import { PromotionModule } from './modules/promotion/promotion.module';
 
 @Module({
   imports: [

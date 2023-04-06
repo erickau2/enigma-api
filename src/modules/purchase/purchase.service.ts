@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
 import { UpdatePurchaseDto } from './dto/update-purchase.dto';
 import { Purchase } from './entities/purchase.entity';
-import { User } from '../../user/entities/user.entity';
-import { Store } from '../../store/entities/store.entity';
+import { User } from '../user/entities/user.entity';
+import { Store } from '../store/entities/store.entity';
 
 @Injectable()
 export class PurchaseService {
