@@ -12,6 +12,7 @@ import { UserModule } from './modules/user/user.module';
 import { LoyaltyPointModule } from './modules/loyalty-point/loyalty-point.module';
 import { StoreModule } from './modules/store/store.module';
 import { PurchaseModule } from './modules/purchase/purchase.module';
+import { PromotionModule } from './promotion/promotion.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { PurchaseModule } from './modules/purchase/purchase.module';
     StoreModule,
     LoyaltyPointModule,
     PurchaseModule,
+    PromotionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
