@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-enum CouponCategoryEnum {
+export enum CouponCategoryEnum {
   All = 'All',
   Retail = 'Retail',
   Restaurant = 'Restaurant',
