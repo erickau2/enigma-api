@@ -12,7 +12,7 @@ import { CreatePurchaseDto } from './dto/create-purchase.dto';
 import { UpdatePurchaseDto } from './dto/update-purchase.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('purchase')
+@ApiTags('Purchase')
 @Controller('purchase')
 export class PurchaseController {
   constructor(private readonly purchaseService: PurchaseService) {}

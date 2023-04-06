@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateLoyaltyPointDto } from './dto/create-loyalty-point.dto';
 import { UpdateLoyaltyPointDto } from './dto/update-loyalty-point.dto';
+import { LoyaltyPoint } from './entities/loyalty-point.entity';
 
 @Injectable()
 export class LoyaltyPointService {
-  create(createLoyaltyPointDto: CreateLoyaltyPointDto) {
-    return 'This action adds a new loyaltyPoint';
+  constructor(
+    @InjectRepository(LoyaltyPoint)
+    private readonly loyaltyPointRepository: Repository<LoyaltyPoint>,
+  ) {}
+
+  async create(createLoyaltyPointDto: CreateLoyaltyPointDto) {
+    const loyaltyPoint = this.loyaltyPointRepository.create(
+      createLoyaltyPointDto,
+    );
+    return await this.loyaltyPointRepository.save(loyaltyPoint);
   }
 
-  findAll() {
-    return `This action returns all loyaltyPoint`;
+  async findAll() {
+    return await this.loyaltyPointRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} loyaltyPoint`;
+  async findOne(id: number) {
+    return await this.loyaltyPointRepository.findOneBy({ id });
   }
 
-  update(id: number, updateLoyaltyPointDto: UpdateLoyaltyPointDto) {
-    return `This action updates a #${id} loyaltyPoint`;
+  async update(id: number, updateLoyaltyPointDto: UpdateLoyaltyPointDto) {
+    await this.loyaltyPointRepository.update(id, updateLoyaltyPointDto);
+    return await this.loyaltyPointRepository.findOneBy({ id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} loyaltyPoint`;
+  async remove(id: number) {
+    return await this.loyaltyPointRepository.delete(id);
   }
 }

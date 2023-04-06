@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateStoreDto } from './dto/create-store.dto';
 import { UpdateStoreDto } from './dto/update-store.dto';
+import { Store } from './entities/store.entity';
 
 @Injectable()
 export class StoreService {
-  create(createStoreDto: CreateStoreDto) {
-    return 'This action adds a new store';
+  constructor(
+    @InjectRepository(Store)
+    private storeRepository: Repository<Store>,
+  ) {}
+
+  async create(createStoreDto: CreateStoreDto): Promise<Store> {
+    const store = this.storeRepository.create(createStoreDto);
+    return await this.storeRepository.save(store);
   }
 
-  findAll() {
-    return `This action returns all store`;
+  async findAll(): Promise<Store[]> {
+    return await this.storeRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} store`;
+  async findOne(id: number): Promise<Store> {
+    return await this.storeRepository.findOneBy({ id });
   }
 
-  update(id: number, updateStoreDto: UpdateStoreDto) {
-    return `This action updates a #${id} store`;
+  async update(id: number, updateStoreDto: UpdateStoreDto): Promise<Store> {
+    const store = await this.storeRepository.findOneBy({ id });
+    this.storeRepository.merge(store, updateStoreDto);
+    return await this.storeRepository.save(store);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} store`;
+  async remove(id: number): Promise<void> {
+    await this.storeRepository.delete(id);
   }
 }

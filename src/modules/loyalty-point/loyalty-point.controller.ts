@@ -12,7 +12,7 @@ import { CreateLoyaltyPointDto } from './dto/create-loyalty-point.dto';
 import { UpdateLoyaltyPointDto } from './dto/update-loyalty-point.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('loyalty-point')
+@ApiTags('Loyalty-point')
 @Controller('loyalty-point')
 export class LoyaltyPointController {
   constructor(private readonly loyaltyPointService: LoyaltyPointService) {}
